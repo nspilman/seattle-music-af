@@ -1,0 +1,522 @@
+---
+---
+
+<form id="artist-survey" class="relative max-w-3xl w-full bg-white/80 backdrop-blur-sm p-8 shadow-lg">
+  <div class="space-y-6">
+    <!-- Basic Information Section -->
+    <section>
+      <h2 class="text-[1.5rem] font-bold mb-4 text-color-text-primary border-b border-color-border pb-2">
+        Basic Information
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="form-group">
+          <label for="name" class="block mb-2 font-medium text-color-text-primary">Name</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+            required
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="block mb-2 font-medium text-color-text-primary">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+            required
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="instagram" class="block mb-2 font-medium text-color-text-primary">Instagram Handle (optional)</label>
+          <input 
+            type="text" 
+            id="instagram" 
+            name="instagram" 
+            placeholder="@yourhandle" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="bluesky" class="block mb-2 font-medium text-color-text-primary">Bluesky Handle (optional)</label>
+          <input 
+            type="text" 
+            id="bluesky" 
+            name="bluesky" 
+            placeholder="@handle.bsky.social" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+          />
+        </div>
+      
+      </div>
+      <div class="form-group mt-4">
+        <label for="website" class="block mb-2 font-medium text-color-text-primary">Existing Website (optional)</label>
+        <input 
+          type="url" 
+          id="website" 
+          name="website" 
+          placeholder="https://yourwebsite.com" 
+          class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+        />
+      </div>
+    </section>
+    
+    <!-- Music Profile Section -->
+    <section>
+      <h2 class="text-[1.5rem] font-bold mb-4 text-color-text-primary border-b border-color-border pb-2">
+        Your Music Profile
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="form-group">
+          <label for="artist-name" class="block mb-2 font-medium text-color-text-primary">Artist/Band Name</label>
+          <input 
+            type="text" 
+            id="artist-name" 
+            name="artist-name" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="genre" class="block mb-2 font-medium text-color-text-primary">Primary Genre</label>
+          <select 
+            id="genre" 
+            name="genre" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+          >
+            <option value="">Select a genre</option>
+            <option value="rock">Rock</option>
+            <option value="indie">Indie</option>
+            <option value="electronic">Electronic</option>
+            <option value="hip-hop">Hip-Hop</option>
+            <option value="folk">Folk</option>
+            <option value="jazz">Jazz</option>
+            <option value="punk">Punk</option>
+            <option value="metal">Metal</option>
+            <option value="classical">Classical</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="block mb-2 font-medium text-color-text-primary">Career Stage</label>
+          <div class="space-y-2">
+            <label class="flex items-center">
+              <input type="radio" name="career-stage" value="hobbyist" class="mr-2 text-color-accent" />
+              <span>Hobbyist</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="career-stage" value="emerging" class="mr-2 text-color-accent" />
+              <span>Emerging Artist</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="career-stage" value="established" class="mr-2 text-color-accent" />
+              <span>Established Local Artist</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="career-stage" value="touring" class="mr-2 text-color-accent" />
+              <span>Touring Artist</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="career-stage" value="professional" class="mr-2 text-color-accent" />
+              <span>Professional Musician</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-4">
+        <label class="block mb-2 font-medium text-color-text-primary">How long have you been part of the Seattle music scene?</label>
+        <select 
+          id="seattle-time" 
+          name="seattle-time" 
+          class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+        >
+          <option value="">Select time range</option>
+          <option value="new">Just getting started</option>
+          <option value="1-3">1-3 years</option>
+          <option value="3-5">3-5 years</option>
+          <option value="5-10">5-10 years</option>
+          <option value="10+">10+ years</option>
+        </select>
+      </div>
+    </section>
+    
+    <!-- Web Needs Section -->
+    <section>
+      <h2 class="text-[1.5rem] font-bold mb-4 text-color-text-primary border-b border-color-border pb-2">
+        Your Web Needs
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="form-group">
+          <label class="block mb-4 font-medium text-color-text-primary">Rate your interest in each web service (1 = Not interested, 5 = Very interested)</label>
+          <div class="space-y-6">
+            <!-- Artist Website -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Artist Website</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-website" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-website" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-website" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-website" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-website" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Electronic Press Kit -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Electronic Press Kit</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-epk" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-epk" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-epk" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-epk" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-epk" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Merch Store -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Merch Store</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-merch" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-merch" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-merch" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-merch" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-merch" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Music Streaming -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Music Streaming</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-streaming" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-streaming" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-streaming" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-streaming" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-streaming" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Booking System -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Booking System</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-booking" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-booking" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-booking" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-booking" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-booking" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Fan Engagement Tools -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Fan Engagement Tools</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-fan" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-fan" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-fan" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-fan" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-fan" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Analytics Dashboard -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Analytics Dashboard</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-analytics" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-analytics" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-analytics" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-analytics" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-analytics" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Marketing Automation -->
+            <div class="service-rating">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">Marketing Automation</span>
+                <div class="flex items-center">
+                  <span class="text-xs text-color-text-secondary mr-2">1</span>
+                  <div class="flex space-x-2">
+                    <label class="rating-label">
+                      <input type="radio" name="rating-marketing" value="1" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-marketing" value="2" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-marketing" value="3" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-marketing" value="4" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                    <label class="rating-label">
+                      <input type="radio" name="rating-marketing" value="5" class="sr-only" />
+                      <span class="rating-button"></span>
+                    </label>
+                  </div>
+                  <span class="text-xs text-color-text-secondary ml-2">5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="challenges" class="block mb-2 font-medium text-color-text-primary">What additional pain points on the web do you have not listed above?</label>
+          <textarea 
+            id="challenges" 
+            name="challenges" 
+            rows="4" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="challenges" class="block mb-2 font-medium text-color-text-primary">What else do you think I should know?</label>
+          <textarea 
+            id="challenges" 
+            name="challenges" 
+            rows="4" 
+            class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
+          ></textarea>
+        </div>
+      </div>
+     
+    </section>
+    
+    <!-- Submit Section -->
+    <section class="pt-4">
+      <div class="flex flex-col items-center">
+        <button 
+          type="submit" 
+          class="seattle-button px-8 py-3 text-[0.95rem] font-medium tracking-wide uppercase text-color-button-text bg-color-button-bg transition hover:opacity-90"
+        >
+          Submit Survey
+        </button>
+        <p class="mt-4 text-sm text-color-text-secondary text-center">
+          By submitting this form, you'll be among the first to know when Seattle Music Artist Foundry(#SeattleMusicAF) launches.
+        </p>
+      </div>
+    </section>
+  </div>
+</form>
+
+<style>
+  /* Rating styles */
+  .rating-label {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .rating-button {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    background-color: var(--color-bg-secondary);
+    transition: all 0.2s ease;
+  }
+
+  input[type="radio"]:checked + .rating-button {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: scale(1.1);
+  }
+
+  input[type="radio"]:focus + .rating-button {
+    box-shadow: 0 0 0 2px var(--color-accent-light);
+  }
+
+  .rating-label:hover .rating-button {
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  // Form submission handler
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('artist-survey') as HTMLFormElement;
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Here you would typically send the form data to your backend
+        // For now, we'll just show a success message
+        
+        // Get form data
+        const formData = new FormData(this);
+        console.log('Form submitted with data:', Object.fromEntries(formData));
+        
+        // Show success message
+        alert('Thanks for completing the survey! We\'ll be in touch when we launch.');
+        
+        // Reset form
+        this.reset();
+      });
+    }
+  });
+</script>

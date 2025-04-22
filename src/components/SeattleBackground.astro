@@ -1,0 +1,74 @@
+---
+---
+
+<style>
+  
+  .bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.05;
+  }
+  
+  .grid-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .vertical-line {
+    height: 100%;
+    border-right: 1px solid var(--color-grid);
+  }
+  
+  .horizontal-line {
+    width: 100%;
+    border-bottom: 1px solid var(--color-grid);
+    grid-column: span 12;
+  }
+  
+  @media (max-width: 768px) {
+    .desktop-bg {
+      display: none;
+    }
+    
+    .mobile-bg {
+      display: block;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .desktop-bg {
+      display: block;
+    }
+    
+    .mobile-bg {
+      display: none;
+    }
+  }
+</style>
+
+<div>
+  <!-- Background images -->
+  <img src="/seattle.png" alt="" class="bg-image desktop-bg" />
+  <img src="/space-needle.png" alt="" class="bg-image mobile-bg" />
+  
+  <!-- Grid pattern -->
+  <div class="grid-pattern">
+    {Array(12).fill(0).map(() => (
+      <div class="vertical-line"></div>
+    ))}
+    {Array(12).fill(0).map(() => (
+      <div class="horizontal-line"></div>
+    ))}
+  </div>
+</div>

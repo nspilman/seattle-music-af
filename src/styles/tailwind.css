@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Seattle-inspired color palette */
+  --color-background: #A9B8C2; /* Muted rain-washed blue-gray */
+  --color-text-primary: #1A2E2A; /* Darker evergreen-tinted text */
+  --color-text-secondary: #334745; /* Softer evergreen-tinted secondary text */
+  --color-button-bg: #1C4B4C; /* Updated evergreen for CTA */
+  --color-button-text: #FFFFFF; /* White text on evergreen */
+  --color-border: #8CA1AB; /* Subtle border color */
+  --color-accent: #004C3C; /* Evergreen accent */
+  --color-grid: #96A5AF; /* Subtle grid lines */
+  
+  /* Typography */
+  --font-size-hero: clamp(2.5rem, 6vw, 4rem);
+  --font-size-subtitle: 1.25rem;
+  --font-size-body: 1rem;
+  --font-size-button: 1.125rem;
+  
+  /* Font Family */
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+h1, h2, h3 { 
+  font-family: var(--font-heading); 
+  font-weight: 700; 
+}
+
+body, button, input { 
+  font-family: var(--font-body); 
+  font-weight: 400; 
+}
+
+/* Custom button styles */
+.seattle-button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+}

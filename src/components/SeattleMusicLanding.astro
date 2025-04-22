@@ -1,0 +1,43 @@
+---
+import TypedHeading from './TypedHeading.astro';
+---
+
+<div class="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
+  
+  <!-- Main content -->
+  <div class="relative max-w-xl w-full flex flex-col items-center p-10 z-10">
+    <TypedHeading />
+    
+    <div class="text-[1.1rem] text-color-text-secondary text-center mb-6 font-medium tracking-wide">
+      Web infrastructure for Seattle musicians
+    </div>
+    
+    <div class="text-[1rem] text-color-text-secondary mb-8 text-center font-medium">
+      Coming Soon
+    </div>
+    
+    <div class="flex flex-col items-center mb-10">
+      <a href="/survey" class="seattle-button text-[0.95rem] px-8 py-3 rounded-none font-medium tracking-wide uppercase transition hover:opacity-90" style="background-color: #1C4B4C;">
+        Take Our Survey
+      </a>
+      <span class="text-[0.75rem] text-color-text-secondary mt-2.5 font-medium">
+        for free and discounted services on launch
+      </span>
+    </div>
+    
+    <!-- Updated wave visualization -->
+    <svg class="w-[240px] h-[40px] mx-auto block mb-4" viewBox="0 0 240 40">
+      <path 
+        d="M0 20 Q 30 10 60 15 T 120 25 T 180 15 T 240 20" 
+        stroke="currentColor" 
+        stroke-width="1" 
+        fill="none" 
+        class="text-color-accent opacity-60" 
+      />
+    </svg>
+    
+    <div class="text-color-text-secondary text-[0.8rem] text-center tracking-wide">
+      #SeattleMusicAF
+    </div>
+  </div>
+</div>

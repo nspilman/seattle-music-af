@@ -1,13 +1,21 @@
+---
+import SeattleBackground from "../components/SeattleBackground.astro";
+import '../styles/tailwind.css';
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Seattle Music Artist Foundry</title>
 	</head>
 	<body>
+		<SeattleBackground />
+
 		<slot />
 	</body>
 </html>
