@@ -1,7 +1,7 @@
 ---
 ---
 
-<form id="artist-survey" class="relative max-w-3xl w-full bg-white/80 backdrop-blur-sm p-8 shadow-lg">
+<form id="artist-survey" class="relative max-w-3xl w-full bg-white/80 backdrop-blur-sm p-8 shadow-lg" method="POST">
   <div class="space-y-6">
     <!-- Basic Information Section -->
     <section>
@@ -425,19 +425,19 @@
         </div>
         
         <div class="form-group">
-          <label for="challenges" class="block mb-2 font-medium text-color-text-primary">What additional pain points on the web do you have not listed above?</label>
+          <label for="pain-points" class="block mb-2 font-medium text-color-text-primary">What additional pain points on the web do you have not listed above?</label>
           <textarea 
-            id="challenges" 
-            name="challenges" 
+            id="pain-points" 
+            name="pain-points" 
             rows="4" 
             class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
           ></textarea>
         </div>
         <div class="form-group">
-          <label for="challenges" class="block mb-2 font-medium text-color-text-primary">What else do you think I should know?</label>
+          <label for="additional-info" class="block mb-2 font-medium text-color-text-primary">What else do you think I should know?</label>
           <textarea 
-            id="challenges" 
-            name="challenges" 
+            id="additional-info" 
+            name="additional-info" 
             rows="4" 
             class="w-full px-4 py-2 border border-color-border focus:border-color-accent focus:outline-none transition-colors"
           ></textarea>
@@ -462,6 +462,26 @@
     </section>
   </div>
 </form>
+
+<div id="form-success" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+  <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+    <h3 class="text-xl font-bold text-color-text-primary mb-4">Thank You!</h3>
+    <p class="text-color-text-secondary mb-6">Your survey has been submitted successfully. We'll be in touch soon!</p>
+    <button id="close-success" class="seattle-button px-6 py-2 text-[0.95rem] font-medium tracking-wide uppercase text-color-button-text bg-color-button-bg transition hover:opacity-90 w-full">
+      Close
+    </button>
+  </div>
+</div>
+
+<div id="form-error" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+  <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+    <h3 class="text-xl font-bold text-red-600 mb-4">Submission Error</h3>
+    <p class="text-color-text-secondary mb-6">There was a problem submitting your form. Please try again later or contact us directly.</p>
+    <button id="close-error" class="seattle-button px-6 py-2 text-[0.95rem] font-medium tracking-wide uppercase text-color-button-text bg-color-button-bg transition hover:opacity-90 w-full">
+      Close
+    </button>
+  </div>
+</div>
 
 <style>
   /* Rating styles */
@@ -496,26 +516,90 @@
 </style>
 
 <script>
-  // Form submission handler
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('artist-survey') as HTMLFormElement;
+    const successModal = document.getElementById('form-success');
+    const errorModal = document.getElementById('form-error');
+    const closeSuccessBtn = document.getElementById('close-success');
+    const closeErrorBtn = document.getElementById('close-error');
+    
+    // Initialize rating buttons
+    const ratingButtons = document.querySelectorAll('.rating-button');
+    
+    ratingButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const input = button.previousElementSibling as HTMLInputElement;
+        if (input && input.type === 'radio') {
+          input.checked = true;
+        }
+      });
+    });
     
     if (form) {
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Here you would typically send the form data to your backend
-        // For now, we'll just show a success message
-        
         // Get form data
-        const formData = new FormData(this);
-        console.log('Form submitted with data:', Object.fromEntries(formData));
+        const formData = new FormData(form);
         
-        // Show success message
-        alert('Thanks for completing the survey! We\'ll be in touch when we launch.');
-        
-        // Reset form
-        this.reset();
+        try {
+          // Show loading state
+          const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+          if (!submitButton) return;
+          
+          const originalText = submitButton.textContent || 'Submit Survey';
+          submitButton.textContent = 'Submitting...';
+          submitButton.disabled = true;
+          
+          // Convert FormData to JSON
+          const formDataObject = Object.fromEntries(formData.entries());
+          
+          // Submit the form data to our API endpoint
+          const response = await fetch('/api/submit-form', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formDataObject),
+          });
+          
+          const result = await response.json();
+          
+          // Reset button state
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+          
+          if (result.success) {
+            // Show success message
+            if (successModal) {
+              successModal.classList.remove('hidden');
+              form.reset();
+            }
+          } else {
+            // Show error message
+            if (errorModal) {
+              errorModal.classList.remove('hidden');
+            }
+          }
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          if (errorModal) {
+            errorModal.classList.remove('hidden');
+          }
+        }
+      });
+    }
+    
+    // Close modals
+    if (closeSuccessBtn && successModal) {
+      closeSuccessBtn.addEventListener('click', () => {
+        successModal.classList.add('hidden');
+      });
+    }
+    
+    if (closeErrorBtn && errorModal) {
+      closeErrorBtn.addEventListener('click', () => {
+        errorModal.classList.add('hidden');
       });
     }
   });
