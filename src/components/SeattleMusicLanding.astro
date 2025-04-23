@@ -23,7 +23,7 @@ import TypedHeading from './TypedHeading.astro';
     </div>
     
     <div class="flex flex-col items-center mb-10">
-      <a href="/survey" class="seattle-button text-[0.95rem] px-8 py-3 rounded-none font-medium tracking-wide uppercase transition hover:opacity-90" style="background-color: #1C4B4C;">
+      <a href="/survey" id="survey-link" class="seattle-button text-[0.95rem] px-8 py-3 rounded-none font-medium tracking-wide uppercase transition hover:opacity-90" style="background-color: #1C4B4C;">
         Take Our Survey
       </a>
       <span class="text-[0.75rem] text-color-text-secondary mt-2.5 font-medium">
@@ -47,3 +47,23 @@ import TypedHeading from './TypedHeading.astro';
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const surveyLink = document.getElementById('survey-link');
+    
+    if (surveyLink) {
+      surveyLink.addEventListener('click', (e) => {
+        // Check if posthog is available
+        if (window.posthog) {
+          // Capture the event
+          window.posthog.capture('survey_link_clicked', {
+            location: 'homepage'
+          });
+        }
+      });
+    }
+  });
+</script>
+
+<style>

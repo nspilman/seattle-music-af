@@ -581,12 +581,26 @@
           submitButton.disabled = false;
           
           if (result.success) {
+            // Track successful form submission with PostHog
+            if (window.posthog) {
+              window.posthog.capture('survey_submitted', {
+                success: true
+              });
+            }
+            
             // Show success message
             if (successModal) {
               successModal.classList.remove('hidden');
               form.reset();
             }
           } else {
+            // Track failed form submission with PostHog
+            if (window.posthog) {
+              window.posthog.capture('survey_submission_failed', {
+                error: 'API error'
+              });
+            }
+            
             // Show error message
             if (errorModal) {
               errorModal.classList.remove('hidden');
@@ -594,6 +608,15 @@
           }
         } catch (error) {
           console.error('Error submitting form:', error);
+          
+          // Track exception during form submission with PostHog
+          if (window.posthog) {
+            window.posthog.capture('survey_submission_failed', {
+              error: 'Exception',
+              errorMessage: error instanceof Error ? error.message : 'Unknown error'
+            });
+          }
+          
           if (errorModal) {
             errorModal.classList.remove('hidden');
           }
