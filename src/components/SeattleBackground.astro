@@ -11,6 +11,8 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.05;
+    z-index: -10;
+    pointer-events: none;
   }
   
   .grid-pattern {
@@ -23,6 +25,7 @@
     grid-template-columns: repeat(12, 1fr);
     opacity: 0.05;
     pointer-events: none;
+    z-index: -5;
   }
   
   .vertical-line {
@@ -57,13 +60,13 @@
   }
 </style>
 
-<div>
+<div class="background-container" style="position: static;">
   <!-- Background images -->
-  <img src="/seattle.png" alt="" class="bg-image desktop-bg" />
+  <img src="/seattle.png" alt="" class="bg-image desktop-bg pointer-events-none" />
   <img src="/space-needle.png" alt="" class="bg-image mobile-bg" />
   
   <!-- Grid pattern -->
-  <div class="grid-pattern">
+  <div class="grid-pattern pointer-events-none">
     {Array(12).fill(0).map(() => (
       <div class="vertical-line"></div>
     ))}

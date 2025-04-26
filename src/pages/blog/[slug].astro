@@ -1,0 +1,28 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// Enable prerendering for static generation
+export const prerender = true;
+
+// Generate static paths for all blog posts
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map((entry: CollectionEntry<'blog'>) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+// Get the blog post data
+const { entry } = Astro.props as Props;
+const { Content } = await entry.render();
+---
+
+<BlogLayout {...entry.data}>
+  <Content />
+</BlogLayout>

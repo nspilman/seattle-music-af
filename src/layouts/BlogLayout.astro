@@ -1,0 +1,93 @@
+---
+import Layout from './Layout.astro';
+import PostHog from "../components/posthog.astro";
+import '../styles/blog.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate: string;
+  updatedDate?: string;
+  heroImage?: string;
+  author?: string;
+}
+
+const { title, description, pubDate, updatedDate, heroImage, author } = Astro.props;
+
+// Format the date
+const formattedPubDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const formattedUpdatedDate = updatedDate 
+  ? new Date(updatedDate).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null;
+---
+
+<Layout title={`${title} | Seattle Music AF Blog`}>
+  <div class="max-w-4xl mx-auto px-4 py-12 relative" style="z-index: 10; position: relative;">
+    <div class="mb-8 relative" style="z-index: 10;">
+      <a href="/blog/" class="flex items-center text-color-text-primary hover:text-color-accent transition-colors mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+          <path d="M19 12H5M12 19l-7-7 7-7"></path>
+        </svg>
+        <span class="font-medium">Back to Blog</span>
+      </a>
+      
+      {heroImage && (
+        <div class="mb-8 aspect-video overflow-hidden rounded-lg">
+          <img 
+            src={heroImage} 
+            alt={title} 
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      
+      <h1 class="text-4xl font-bold text-color-text-primary mb-4">{title}</h1>
+      
+      <div class="flex items-center text-color-text-secondary mb-2">
+        {author && (
+          <span class="mr-4">{author}</span>
+        )}
+        <time datetime={pubDate}>{formattedPubDate}</time>
+        
+        {formattedUpdatedDate && (
+          <span class="ml-4">(Updated: {formattedUpdatedDate})</span>
+        )}
+      </div>
+      
+      <p class="text-xl text-color-text-secondary mb-8">{description}</p>
+      
+      <hr class="border-color-border mb-8" />
+    </div>
+    
+    <article class="prose prose-lg max-w-none prose-headings:text-color-text-primary prose-p:text-color-text-secondary prose-a:text-color-accent hover:prose-a:text-color-accent/80 prose-code:bg-color-bg-secondary prose-code:text-color-text-primary prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none relative" style="z-index: 10; position: relative;">
+      <slot />
+    </article>
+    
+    <div class="mt-12 pt-8 border-t border-color-border relative" style="z-index: 10;">
+      <a href="/blog/" class="text-color-accent hover:text-color-accent/80 transition-colors">
+        ← Back to Blog
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Track blog post view with PostHog
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.posthog) {
+      window.posthog.capture('blog_post_viewed', {
+        title: document.title,
+        url: window.location.pathname
+      });
+    }
+  });
+</script>

@@ -31,6 +31,16 @@ import TypedHeading from './TypedHeading.astro';
       </span>
     </div>
     
+    <div class="mb-8">
+      <a href="/blog/" id="blog-link" class="text-color-accent hover:text-color-accent/80 transition-colors font-medium flex items-center">
+        <span>Check out our blog</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
     <!-- Updated wave visualization -->
     <svg class="w-[240px] h-[40px] mx-auto block mb-4" viewBox="0 0 240 40">
       <path 
@@ -58,6 +68,19 @@ import TypedHeading from './TypedHeading.astro';
         if (window.posthog) {
           // Capture the event
           window.posthog.capture('survey_link_clicked', {
+            location: 'homepage'
+          });
+        }
+      });
+    }
+    
+    const blogLink = document.getElementById('blog-link');
+    if (blogLink) {
+      blogLink.addEventListener('click', (e) => {
+        // Check if posthog is available
+        if (window.posthog) {
+          // Capture the event
+          window.posthog.capture('blog_link_clicked', {
             location: 'homepage'
           });
         }

@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// Enable prerendering for static generation
+export const prerender = true;
+
+// Get all blog posts and sort them by publication date
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+
+// Format date function
+function formatDate(date: Date | string): string {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout title="Blog | Seattle Music Artist Foundry">
+  <div class="min-h-screen flex flex-col px-4 py-12 max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="w-full flex items-center justify-between mb-12">
+      <div>
+        <a href="/" class="flex items-center text-color-text-primary hover:text-color-accent transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+            <path d="M19 12H5M12 19l-7-7 7-7"></path>
+          </svg>
+          <span class="font-medium">Back to Home</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Blog Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold text-color-text-primary mb-4">Seattle Music AF Blog</h1>
+      <p class="text-xl text-color-text-secondary max-w-2xl mx-auto">
+        News, insights, and stories from the Seattle music scene
+      </p>
+    </div>
+    
+    <!-- Blog Posts -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedPosts.map((post) => (
+        <article class="bg-white/80 backdrop-blur-sm shadow-md rounded-lg overflow-hidden flex flex-col h-full transition-transform hover:scale-[1.02]">
+          {post.data.heroImage && (
+            <div class="aspect-video overflow-hidden">
+              <img 
+                src={post.data.heroImage} 
+                alt={post.data.title} 
+                class="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          
+          <div class="p-6 flex-grow flex flex-col">
+            <h2 class="text-xl font-bold text-color-text-primary mb-2 line-clamp-2">
+              {post.data.title}
+            </h2>
+            
+            <div class="text-sm text-color-text-secondary mb-3">
+              <time datetime={post.data.pubDate}>
+                {formatDate(post.data.pubDate)}
+              </time>
+              {post.data.author && (
+                <span class="ml-2">by {post.data.author}</span>
+              )}
+            </div>
+            
+            <p class="text-color-text-secondary mb-4 line-clamp-3">
+              {post.data.description}
+            </p>
+            
+            <a 
+              href={`/blog/${post.slug}`} 
+              class="mt-auto text-color-accent font-medium hover:text-color-accent/80 transition-colors"
+            >
+              Read more →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    {sortedPosts.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-xl text-color-text-secondary">No blog posts yet. Check back soon!</p>
+      </div>
+    )}
+  </div>
+</Layout>
+
+<script>
+  // Track blog index page view with PostHog
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.posthog) {
+      window.posthog.capture('blog_index_viewed');
+    }
+  });
+</script>
