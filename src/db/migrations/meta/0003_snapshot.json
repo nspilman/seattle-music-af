@@ -1,0 +1,173 @@
+{
+  "id": "803237c1-3d06-47ce-9319-4b9ce233674c",
+  "prevId": "762e123a-fa38-462a-9ac5-0029cb97ad64",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.survey_submissions": {
+      "name": "survey_submissions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "instagram": {
+          "name": "instagram",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bluesky": {
+          "name": "bluesky",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "website": {
+          "name": "website",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "referral_source": {
+          "name": "referral_source",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "artist_name": {
+          "name": "artist_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "genre": {
+          "name": "genre",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "career_stage": {
+          "name": "career_stage",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "seattle_time": {
+          "name": "seattle_time",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "website_rating": {
+          "name": "website_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "epk_rating": {
+          "name": "epk_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "resource_dir_rating": {
+          "name": "resource_dir_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fan_rating": {
+          "name": "fan_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "marketing_rating": {
+          "name": "marketing_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "merch_rating": {
+          "name": "merch_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "booking_rating": {
+          "name": "booking_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analytics_rating": {
+          "name": "analytics_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pain_points": {
+          "name": "pain_points",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additional_info": {
+          "name": "additional_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "survey_submissions_email_unique": {
+          "name": "survey_submissions_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
