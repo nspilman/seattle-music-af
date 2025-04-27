@@ -1,0 +1,28 @@
+---
+export interface Props {
+  getMarkdown: () => string;
+}
+const { getMarkdown } = Astro.props;
+
+---
+<button
+  type="button"
+  class="inline-flex items-center gap-2 bg-white text-black font-semibold px-4 py-2 rounded border border-color-border shadow cursor-pointer hover:bg-gray-100 transition-colors"
+  id="copy-markdown-btn"
+  data-markdown={getMarkdown()}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="currentColor" />
+    <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="currentColor" />
+  </svg>
+</button>
+
+<script>
+if (typeof window !== 'undefined') {
+  const btn = document.getElementById('copy-markdown-btn');
+  btn?.addEventListener('click', () => {
+    const markdown = btn.getAttribute('data-markdown');
+    if (markdown) navigator.clipboard.writeText(markdown);
+  });
+}
+</script>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import CopyMarkdownButton from '../../components/CopyMarkdownButton.astro';
 import { surveySubmissions } from '../../db/schema/survey';
 import { createDbConnection } from '../../db/index';
 
@@ -35,8 +36,14 @@ const averages = RATING_LABELS
       <div class="mb-4 text-lg font-semibold text-color-text-primary">
         Total Votes: <span class="font-bold">{results.length}</span>
       </div>
-      <div>
-        <h2 class="font-semibold mb-2 text-color-text-primary">Average Ratings (ordered):</h2>
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="font-semibold text-color-text-primary mb-0">Average Ratings (ordered):</h2>
+        <CopyMarkdownButton getMarkdown={() => {
+          const header = '| Feature | Average Rating |\n| --- | --- |';
+          const rows = averages.map(item => `| ${item.label} | ${item.avg.toFixed(2)} |`).join('\n');
+          return `${header}\n${rows}`;
+        }} />
+      </div>
         <ul class="space-y-1">
           {averages.map(item => (
             <li class="flex justify-between border-b border-color-border py-1">
