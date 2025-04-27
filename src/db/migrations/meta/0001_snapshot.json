@@ -1,0 +1,165 @@
+{
+  "id": "fcd47331-3d80-4208-85cf-70dfbfebcb23",
+  "prevId": "704b721f-15df-444c-9865-d94986c762f5",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.survey_submissions": {
+      "name": "survey_submissions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "instagram": {
+          "name": "instagram",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bluesky": {
+          "name": "bluesky",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "website": {
+          "name": "website",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "referral_source": {
+          "name": "referral_source",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "artist_name": {
+          "name": "artist_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "genre": {
+          "name": "genre",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "career_stage": {
+          "name": "career_stage",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "seattle_time": {
+          "name": "seattle_time",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "website_rating": {
+          "name": "website_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "epk_rating": {
+          "name": "epk_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "resource_dir_rating": {
+          "name": "resource_dir_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fan_rating": {
+          "name": "fan_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "marketing_rating": {
+          "name": "marketing_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "merch_rating": {
+          "name": "merch_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "booking_rating": {
+          "name": "booking_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "analytics_rating": {
+          "name": "analytics_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pain_points": {
+          "name": "pain_points",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additional_info": {
+          "name": "additional_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

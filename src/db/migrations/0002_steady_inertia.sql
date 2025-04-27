@@ -1,0 +1,1 @@
+ALTER TABLE "survey_submissions" ADD CONSTRAINT "survey_submissions_email_unique" UNIQUE("email");

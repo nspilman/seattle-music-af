@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { surveySubmissions } from '../../db/schema/survey';
+import { createDbConnection } from '../../db/index';
+
+const { db } = await createDbConnection();
+const results = await db.select().from(surveySubmissions).orderBy(surveySubmissions.id);
+
+// Shared label mapping for rating fields (order matters)
+const RATING_LABELS = [
+  { field: 'rating-website', db: 'websiteRating', label: 'Artist Website' },
+  { field: 'rating-epk', db: 'epkRating', label: 'Electronic Press Kit' },
+  { field: 'rating-merch', db: 'merchRating', label: 'Merch Store' },
+  { field: 'rating-directory', db: 'resourceDirRating', label: 'Services Directory' },
+  { field: 'rating-booking', db: 'bookingRating', label: 'Booking System' },
+  { field: 'rating-fan', db: 'fanRating', label: 'Fan Engagement Tools' },
+  { field: 'rating-analytics', db: 'analyticsRating', label: 'Analytics Dashboard' },
+  { field: 'rating-marketing', db: 'marketingRating', label: 'Marketing Automation' },
+];
+
+const averages = RATING_LABELS
+  .map(({ db, label }) => {
+    const values = results.map(r => Number((r)[db])).filter(v => !isNaN(v));
+    const avg = values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
+    return { label, avg };
+  })
+  .sort((a, b) => b.avg - a.avg);
+
+---
+
+<Layout title="Survey Results | Seattle Music Artist Foundry">
+  <div class="max-w-4xl mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">Survey Results</h1>
+    <div class="mb-8 bg-white/80 backdrop-blur-sm rounded-lg shadow p-6">
+      <div class="mb-4 text-lg font-semibold text-color-text-primary">
+        Total Votes: <span class="font-bold">{results.length}</span>
+      </div>
+      <div>
+        <h2 class="font-semibold mb-2 text-color-text-primary">Average Ratings (ordered):</h2>
+        <ul class="space-y-1">
+          {averages.map(item => (
+            <li class="flex justify-between border-b border-color-border py-1">
+              <span>{item.label}</span>
+              <span class="font-mono">{item.avg.toFixed(2)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
+      <a href="/" class="inline-block px-6 py-2 rounded bg-color-accent text-white font-semibold shadow hover:bg-color-accent-hover transition-colors text-center">Back to Home</a>
+      <a href="/prelaunch-survey" class="inline-block px-6 py-2 rounded bg-color-bg-secondary text-color-text-primary font-semibold shadow border border-color-border hover:bg-color-accent hover:text-white transition-colors text-center">Take the Survey</a>
+    </div>
+  </div>
+</Layout>
