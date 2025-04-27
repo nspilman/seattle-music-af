@@ -1,0 +1,20 @@
+CREATE TABLE "survey_submissions" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" varchar(255) NOT NULL,
+	"email" varchar(255) NOT NULL,
+	"instagram" varchar(255),
+	"bluesky" varchar(255),
+	"website" varchar(255),
+	"referral_source" varchar(255),
+	"artist_name" varchar(255),
+	"genre" varchar(100),
+	"career_stage" varchar(100),
+	"seattle_time" varchar(50),
+	"website_rating" integer,
+	"merch_rating" integer,
+	"booking_rating" integer,
+	"analytics_rating" integer,
+	"pain_points" text,
+	"additional_info" text,
+	"created_at" timestamp DEFAULT now() NOT NULL
+);

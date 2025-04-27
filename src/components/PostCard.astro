@@ -1,0 +1,41 @@
+---
+// PostCard.astro
+export interface Props {
+  title: string;
+  description: string;
+  pubDate: Date | string;
+  author?: string;
+  heroImage?: string;
+  href: string;
+}
+
+const { title, description, pubDate, author, heroImage, href } = Astro.props;
+
+function formatDate(date: Date | string): string {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+<article class="bg-white/80 backdrop-blur-sm shadow-md rounded-lg overflow-hidden flex flex-col h-full transition-transform hover:scale-[1.02]">
+  {heroImage && (
+    <div class="aspect-video overflow-hidden">
+      <img 
+        src={heroImage} 
+        alt={title} 
+        class="w-full h-full object-cover"
+      />
+    </div>
+  )}
+  <div class="p-6 flex-grow flex flex-col">
+    <a href={href} class="text-2xl font-bold text-color-accent hover:underline mb-2">
+      {title}
+    </a>
+    <div class="text-color-text-secondary text-sm mb-1">
+      {formatDate(pubDate)}{author ? ` — ${author}` : ''}
+    </div>
+    <p class="text-color-text-secondary flex-grow">{description}</p>
+  </div>
+</article>

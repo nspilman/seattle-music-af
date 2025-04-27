@@ -6,21 +6,30 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "bun run src/db/migrate.ts",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.5",
     "@astrojs/netlify": "^6.3.0",
     "@astrojs/rss": "^4.0.11",
+    "@neondatabase/serverless": "^1.0.0",
     "astro": "^5.7.4",
     "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "pg": "^8.15.6",
     "resend": "^4.3.0"
   },
   "devDependencies": {
     "@fontsource/inter": "^5.2.5",
     "@tailwindcss/postcss": "^4.1.4",
+    "@types/pg": "^8.11.14",
     "autoprefixer": "^10.4.21",
+    "drizzle-kit": "^0.31.0",
     "postcss": "^8.5.3",
+    "postgres": "^3.4.5",
     "tailwindcss": "^4.1.4"
   }
 }

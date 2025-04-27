@@ -3,17 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PostCard from '../../components/PostCard.astro';
 
-// Enable prerendering for static generation
 export const prerender = true;
 
-// Get all blog posts and sort them by publication date
-const posts = await getCollection('blog');
+const posts = await getCollection('technical');
 const sortedPosts = posts.sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+  (a: CollectionEntry<'technical'>, b: CollectionEntry<'technical'>) => 
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
 
-// Format date function
 function formatDate(date: Date | string): string {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -23,7 +20,7 @@ function formatDate(date: Date | string): string {
 }
 ---
 
-<Layout title="Blog | Seattle Music Artist Foundry">
+<Layout title="Technical Blog | Seattle Music Artist Foundry">
   <div class="min-h-screen flex flex-col px-4 py-12 max-w-6xl mx-auto">
     <!-- Header -->
     <div class="w-full flex items-center justify-between mb-12">
@@ -36,42 +33,23 @@ function formatDate(date: Date | string): string {
         </a>
       </div>
     </div>
-    
     <!-- Blog Header -->
     <div class="mb-12 text-center">
-      <h1 class="text-4xl font-bold text-color-text-primary mb-4">Seattle Music AF Blog</h1>
-      <p class="text-xl text-color-text-secondary max-w-2xl mx-auto">
-        News, insights, and stories from the Seattle music scene
-      </p>
+      <h1 class="text-4xl font-bold text-color-text-primary mb-4">Technical Blog</h1>
+      <p class="text-lg text-color-text-secondary">Posts about how the website works, technical deep-dives, and more.</p>
     </div>
-    
     <!-- Blog Posts -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {sortedPosts.map((post) => (
+      {sortedPosts.map(post => (
         <PostCard
           title={post.data.title}
           description={post.data.description}
           pubDate={post.data.pubDate}
           author={post.data.author}
           heroImage={post.data.heroImage}
-          href={`/blog/${post.slug}/`}
+          href={`/technical/${post.slug}/`}
         />
       ))}
     </div>
-    
-    {sortedPosts.length === 0 && (
-      <div class="text-center py-12">
-        <p class="text-xl text-color-text-secondary">No blog posts yet. Check back soon!</p>
-      </div>
-    )}
   </div>
 </Layout>
-
-<script>
-  // Track blog index page view with PostHog
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.posthog) {
-      window.posthog.capture('blog_index_viewed');
-    }
-  });
-</script>
