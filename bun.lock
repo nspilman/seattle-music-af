@@ -13,6 +13,7 @@
         "drizzle-orm": "^0.43.1",
         "pg": "^8.15.6",
         "resend": "^4.3.0",
+        "zod": "^3.24.3",
       },
       "devDependencies": {
         "@fontsource/inter": "^5.2.5",

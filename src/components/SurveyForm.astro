@@ -375,23 +375,23 @@
                   <span class="text-xs text-color-text-secondary mr-2">1</span>
                   <div class="flex space-x-2">
                     <label class="rating-label">
-                      <input type="radio" name="rating-analytics" value="1" required "1" class="sr-only" />
+                      <input type="radio" name="rating-analytics" value="1" class="sr-only" />
                       <span class="rating-button"></span>
                     </label>
                     <label class="rating-label">
-                      <input type="radio" name="rating-analytics" value="1" required "2" class="sr-only" />
+                      <input type="radio" name="rating-analytics" value="2" class="sr-only" />
                       <span class="rating-button"></span>
                     </label>
                     <label class="rating-label">
-                      <input type="radio" name="rating-analytics" value="1" required "3" class="sr-only" />
+                      <input type="radio" name="rating-analytics" value="3" class="sr-only" />
                       <span class="rating-button"></span>
                     </label>
                     <label class="rating-label">
-                      <input type="radio" name="rating-analytics" value="1" required "4" class="sr-only" />
+                      <input type="radio" name="rating-analytics" value="4" class="sr-only" />
                       <span class="rating-button"></span>
                     </label>
                     <label class="rating-label">
-                      <input type="radio" name="rating-analytics" value="1" required "5" class="sr-only" />
+                      <input type="radio" name="rating-analytics" value="5" class="sr-only" />
                       <span class="rating-button"></span>
                     </label>
                   </div>
@@ -533,6 +533,27 @@
     const errorModal = document.getElementById('form-error');
     const closeSuccessBtn = document.getElementById('close-success');
     const closeErrorBtn = document.getElementById('close-error');
+    const validationErrorModal = document.createElement('div');
+    
+    // Create validation error modal
+    validationErrorModal.className = 'fixed inset-0 flex items-center justify-center bg-black/50 z-50 hidden';
+    validationErrorModal.innerHTML = `
+      <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+        <h3 class="text-xl font-bold text-color-text-primary mb-4">Missing Information</h3>
+        <p class="text-color-text-secondary mb-6" id="validation-message">Please rate all services before submitting.</p>
+        <button id="close-validation" class="seattle-button px-6 py-2 text-[0.95rem] font-medium tracking-wide uppercase text-color-button-text bg-color-button-bg transition hover:opacity-90 w-full">
+          Close
+        </button>
+      </div>
+    `;
+    document.body.appendChild(validationErrorModal);
+    
+    const closeValidationBtn = document.getElementById('close-validation');
+    if (closeValidationBtn) {
+      closeValidationBtn.addEventListener('click', () => {
+        validationErrorModal.classList.add('hidden');
+      });
+    }
     
     // Initialize rating buttons
     const ratingButtons = document.querySelectorAll('.rating-button');
@@ -549,6 +570,45 @@
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        // Validate required rating fields
+        const requiredRatingGroups = [
+          'rating-website',
+          'rating-epk',
+          'rating-directory',
+          'rating-fan',
+          'rating-marketing',
+          'rating-merch',
+          'rating-booking',
+          'rating-analytics'
+        ];
+        
+        const missingRatings = [];
+        
+        for (const ratingGroup of requiredRatingGroups) {
+          const hasSelection = form.querySelector(`input[name="${ratingGroup}"]:checked`);
+          if (!hasSelection) {
+            missingRatings.push(ratingGroup.replace('rating-', ''));
+          }
+        }
+        
+        if (missingRatings.length > 0) {
+          // Format missing ratings for display
+          const formattedMissing = missingRatings.map(rating => {
+            // Convert to title case and handle special cases
+            if (rating === 'epk') return 'Electronic Press Kit';
+            if (rating === 'directory') return 'Services Directory';
+            return rating.charAt(0).toUpperCase() + rating.slice(1);
+          }).join(', ');
+          
+          const validationMessage = document.getElementById('validation-message');
+          if (validationMessage) {
+            validationMessage.textContent = `Please rate the following services before submitting: ${formattedMissing}`;
+          }
+          
+          validationErrorModal.classList.remove('hidden');
+          return;
+        }
         
         // Get form data
         const formData = new FormData(form);
