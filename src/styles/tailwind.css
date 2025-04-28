@@ -27,7 +27,6 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: var(--font-body);
-  background-color: var(--color-background);
   color: var(--color-text-primary);
 }
 
