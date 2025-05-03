@@ -12,7 +12,7 @@ Our latest survey surfaced three clear needs: **Fan Engagement, Marketing Automa
 
 ### How It Could Work
 
-* **Engagement Texts** — Fans opt in by texting a keyword to your dedicated number. They receive concise tasks such as "Stream the new single," "Share the flyer," or "Bring a friend to the next show."
+* **Engagement Texts** — Fans opt in by texting a keyword to your dedicated number. They receive concise tasks such as "Stream the new single," "Share the flyer," or "Bring a friend to the next show." The fan then texts back when they've completed the task. 
 * **Points & Tiers** — Tasks award points (50 pts for a stream, 75 pts for a share, 150 pts for a confirmed ticket buy). Tiers unlock at 500 pts (**Local Hero**) and 1,000 pts (**VIP**).
 * **Automation Layer** — The platform schedules and sends each task at the right moment—release day, tour announcement, or recap—so you're not juggling manual DMs.
 * **Analytics Dashboard** — Every link is tracked. You see clicks, completions, and which fans are most engaged.
