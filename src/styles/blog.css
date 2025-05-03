@@ -1,6 +1,6 @@
 /* Blog styles */
 .prose {
-  max-width: 65ch;
+  /* Removed fixed max-width to allow content to expand properly on desktop */
   color: var(--color-text-secondary);
 }
 

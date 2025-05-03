@@ -32,7 +32,7 @@ const formattedUpdatedDate = updatedDate
 ---
 
 <Layout title={`${title} | Seattle Music AF Blog`}>
-  <div class="max-w-4xl mx-auto px-4 py-12 relative" style="z-index: 10; position: relative;">
+  <div class="max-w-4xl mx-auto px-4 md:px-6 py-12 relative" style="z-index: 10; position: relative;">
     <div class="mb-8 relative" style="z-index: 10;">
       <a href={section === 'technical' ? '/technical/' : '/blog/'} class="flex items-center text-color-text-primary hover:text-color-accent transition-colors mb-6">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
@@ -69,7 +69,7 @@ const formattedUpdatedDate = updatedDate
       <hr class="border-color-border mb-8" />
     </div>
     
-    <article class="prose prose-lg max-w-none prose-headings:text-color-text-primary prose-p:text-color-text-secondary prose-a:text-color-accent hover:prose-a:text-color-accent/80 prose-code:bg-color-bg-secondary prose-code:text-color-text-primary prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none relative" style="z-index: 10; position: relative;">
+    <article class="prose prose-lg w-full prose-headings:text-color-text-primary prose-p:text-color-text-secondary prose-a:text-color-accent hover:prose-a:text-color-accent/80 prose-code:bg-color-bg-secondary prose-code:text-color-text-primary prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none relative" style="z-index: 10; position: relative;">
       <slot />
     </article>
     
