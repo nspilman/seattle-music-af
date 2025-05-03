@@ -4,7 +4,7 @@ description: "Outline of an SMS points system that combines engagement, automati
 pubDate: 2025-05-03T11:07:23-07:00
 author: "Nate, Seattle Music AF"
 collection: blog
-heroImage: "https://pfilhgtnfzafzfkuvyzq.supabase.co/storage/v1/object/public/blog-assets/games-we-used-to-play.jpeg"
+heroImage: "https://pfilhgtnfzafzfkuvyzq.supabase.co/storage/v1/object/public/blog-assets//games%20we%20used%20to%20play.jpeg"
 ---
 ## SMS‑Based Fan Engagement Gamification
 
